@@ -11,5 +11,9 @@ module.exports = {
 
     getEmployee(){
         return connection.query("SELECT * FROM emmployees");
+    },
+
+    endConnection (){
+        connection.end();
     }
 }
