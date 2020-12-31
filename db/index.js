@@ -13,6 +13,18 @@ module.exports = {
         return connection.query("SELECT * FROM emmployees");
     },
 
+    addDepartment(){
+
+    },
+
+    addRole() {
+
+    },
+
+    addEmployee(){
+
+    },
+
     endConnection (){
         return connection.end();
     }

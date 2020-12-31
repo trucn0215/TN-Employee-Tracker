@@ -74,4 +74,16 @@ function view_Employee_Table (){
     })
 }
 
+function add_Department (){
+
+}
+
+function add_Role (){
+
+}
+
+function add_Employee (){
+    
+}
+
 startingPromt();
