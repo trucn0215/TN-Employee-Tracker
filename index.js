@@ -1,12 +1,26 @@
 const inquirer = require("inquirer");
 const db = require("./db");
 const dbIndex = require("./db/index");
-const connecting = require("./db/connection");
+// const connecting = require("./db/connection");
 const table = require("console.table");
+
+function combineTable() {
+
+    db
+        .showAll()
+        .then((result) => {
+            console.log("\nCOMBINE TABLE");
+            console.table(result);
+
+            startingPromt();
+        })
+}
+
+combineTable();
 
 function startingPromt() {
     inquirer
-        .prompt([
+        .prompt(
             {
                 type: "list",
                 message: "Pick an option!",
@@ -19,14 +33,15 @@ function startingPromt() {
                         "Add Department",
                         "Add Roles",
                         "Add Employee",
+                        "Update Employee Role",
                         "QUIT"
                     ]
             }
-        ]).then((trackerchoises) => {
+        )
+        .then((trackerchoises) => {
             switch (trackerchoises.tracker) {
                 case "View Department":
                     console.log("\n\nLet's view department table!");
-                    // startingPromt();
                     view_Department_Table();
                     break;
 
@@ -53,6 +68,11 @@ function startingPromt() {
                 case "Add Employee":
                     console.log("\n\n Lets Add a Employee to Table!");
                     add_Employee();
+                    break;
+
+                case "Update Employee Role":
+                    console.log("\n\nLets Update Employee Roles");
+                    update_Employee_Role();
                     break;
 
                 default:
@@ -90,8 +110,19 @@ function view_Employee_Table() {
 }
 
 function add_Department() {
-    console.log("Adding a Department");
-    startingPromt();
+    // console.log("Adding a Department");
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "departmentName",
+                message: "what Department do you want to add?"
+            }
+        ])
+        .then((response) => {
+            db.addDepartment(response);
+            startingPromt();
+        })
 }
 
 function add_Role() {
@@ -104,4 +135,6 @@ function add_Employee() {
     startingPromt();
 }
 
-startingPromt();
+function update_Employee_Role() {
+    startingPromt();
+}
