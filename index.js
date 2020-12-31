@@ -31,59 +31,77 @@ function startingPromt() {
                     break;
 
                 case "View Roles":
-                    console.log("\n\nLets View Role Table!");
+                    console.log("\n\n Lets View Role Table!");
                     view_Role_Table();
                     break;
 
                 case "View Employee":
-                    console.log("\n\nLets View Employee Table!");
+                    console.log("\n\n Lets View Employee Table!");
                     view_Employee_Table();
                     break;
 
+                case "Add Department":
+                    console.log("\n\n Lets Add a Department to Table!");
+                    add_Department();
+                    break;
+
+                case "Add Roles":
+                    console.log("\n\n Lets Add a Role to Table!");
+                    add_Role();
+                    break;
+
+                case "Add Employee":
+                    console.log("\n\n Lets Add a Employee to Table!");
+                    add_Employee();
+                    break;
+
                 default:
-                    dbIndex.endConnection(); // TODO: This giving error when QUIT
-                    // break;
+                    dbIndex.endConnection();
+                // break;
             }
         })
 }
 
-function view_Department_Table (){
+function view_Department_Table() {
     db
-    .getDepartments()
-    .then((result) => {
-        console.table(result);
-        startingPromt();
-    })
+        .getDepartments()
+        .then((result) => {
+            console.table(result);
+            startingPromt();
+        })
 }
 
-function view_Role_Table (){
+function view_Role_Table() {
     db
-    .getRole()
-    .then((result) => {
-        console.table(result);
-        startingPromt();
-    })
+        .getRole()
+        .then((result) => {
+            console.table(result);
+            startingPromt();
+        })
 }
 
-function view_Employee_Table (){
+function view_Employee_Table() {
     db
-    .getEmployee()
-    .then((result) => {
-        console.table(result);
-        startingPromt();
-    })
+        .getEmployee()
+        .then((result) => {
+            console.table(result);
+            startingPromt();
+        })
 }
 
-function add_Department (){
-
+function add_Department() {
+    console.log("Adding a Department");
+    startingPromt();
 }
 
-function add_Role (){
-
+function add_Role() {
+    console.log("Adding a Role");
+    startingPromt();
 }
 
-function add_Employee (){
-    
+function add_Employee() {
+    console.log("Adding a Empployee");
+    startingPromt();
 }
 
 startingPromt();

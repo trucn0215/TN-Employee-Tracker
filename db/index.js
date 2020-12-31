@@ -10,7 +10,7 @@ module.exports = {
     },
 
     getEmployee(){
-        return connection.query("SELECT * FROM emmployees");
+        return connection.query("SELECT * FROM employees");
     },
 
     addDepartment(){
