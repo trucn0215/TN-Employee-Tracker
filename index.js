@@ -37,7 +37,7 @@ function startingPromt() {
 
                 case "View Employee":
                     console.log("\n\nLets View Employee Table!");
-                    startingPromt();
+                    view_Employee_Table();
                     break;
 
                 default:
@@ -67,7 +67,7 @@ function view_Role_Table (){
 
 function view_Employee_Table (){
     db
-    .getDepartments()
+    .getEmployee()
     .then((result) => {
         console.table(result);
         startingPromt();
