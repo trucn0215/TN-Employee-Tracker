@@ -25,18 +25,18 @@ function startingPromt() {
         ]).then((trackerchoises) => {
             switch (trackerchoises.tracker) {
                 case "View Department":
-                    console.log("Let's view department table!");
+                    console.log("\n\nLet's view department table!");
                     // startingPromt();
-                    viewDepartmentTable();
+                    view_Department_Table();
                     break;
 
                 case "View Roles":
-                    console.log("Lets View Role Table!");
-                    startingPromt();
+                    console.log("\n\nLets View Role Table!");
+                    view_Role_Table();
                     break;
 
                 case "View Employee":
-                    console.log("Lets View Employee Table!");
+                    console.log("\n\nLets View Employee Table!");
                     startingPromt();
                     break;
 
@@ -47,7 +47,25 @@ function startingPromt() {
         })
 }
 
-function viewDepartmentTable (){
+function view_Department_Table (){
+    db
+    .getDepartments()
+    .then((result) => {
+        console.table(result);
+        startingPromt();
+    })
+}
+
+function view_Role_Table (){
+    db
+    .getRole()
+    .then((result) => {
+        console.table(result);
+        startingPromt();
+    })
+}
+
+function view_Employee_Table (){
     db
     .getDepartments()
     .then((result) => {
