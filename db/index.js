@@ -14,6 +14,6 @@ module.exports = {
     },
 
     endConnection (){
-        connection.end();
+        return connection.end();
     }
 }
