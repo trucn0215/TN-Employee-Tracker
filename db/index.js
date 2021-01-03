@@ -20,6 +20,10 @@ module.exports = {
     getDepartments() {
         return connection.query("SELECT * FROM departments")
     },
+    
+    addDepartment(data){
+        return connection.query("INSERT INTO departments SET department_name = ?", data);
+    },
 
     getRole() {
         return connection.query("SELECT * FROM roles");
@@ -29,9 +33,6 @@ module.exports = {
         return connection.query("SELECT * FROM employees");
     },
 
-    addDepartment(data){
-        return connection.query("INSERT INTO departments SET department_name = ?", data);
-    },
 
     addRole() {
 

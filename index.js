@@ -4,6 +4,7 @@ const dbIndex = require("./db/index");
 // const connecting = require("./db/connection");
 const table = require("console.table");
 
+// SHOW COMBINED DATA
 function combineTable() {
 
     db
@@ -16,15 +17,16 @@ function combineTable() {
         })
 }
 
-combineTable();
+combineTable(); // Call Back the function
 
+// Starting with the choises TO DO
 function startingPromt() {
     inquirer
         .prompt(
             {
                 type: "list",
                 message: "Pick an option!",
-                name: "tracker",
+                name: "choisesOption",
                 choices:
                     [
                         "View Department",
@@ -39,7 +41,7 @@ function startingPromt() {
             }
         )
         .then((trackerchoises) => {
-            switch (trackerchoises.tracker) {
+            switch (trackerchoises.choisesOption) {
                 case "View Department":
                     console.log("\n\nLet's view department table!");
                     view_Department_Table();
@@ -112,13 +114,13 @@ function view_Employee_Table() {
 function add_Department() {
     // console.log("Adding a Department");
     inquirer
-        .prompt([
+        .prompt(
             {
                 type: "input",
                 name: "departmentName",
                 message: "what Department do you want to add?"
             }
-        ])
+        )
         .then((response) => {
             db.addDepartment(response.departmentName);
             startingPromt();
@@ -126,15 +128,50 @@ function add_Department() {
 }
 
 function add_Role() {
-    console.log("Adding a Role");
-    startingPromt();
+    // console.log("Adding a Role");
+    db
+        .getDepartments()
+        .then((departmentData) => {
+            const departmentList = departmentData.map((getData) => ({
+                value: getData.id,
+                name: getData.department_name
+            }))
+
+            inquirer
+                .prompt([
+                    {
+                        type: "list",
+                        name: "departmentChoises",
+                        message: "Choose a DEPARTMENT to Add role!",
+                        choices: departmentList
+                    },
+                    {
+                        type: "input",
+                        name: "roleTitle",
+                        message: "What is role TITLE?"
+                    },
+                    {
+                        type: "input",
+                        name: "roleSalary",
+                        message: "What is SALARY of this role?"
+                    }
+                ])
+                .then((response) => {
+                    console.log("Department Choise: " + response.departmentChoises.name);
+                    console.log("Role Title: " + response.roleTitle);
+                    console.log("Role Salary: " + response.roleSalary);
+
+                    console.log("-----------------------------------------")
+                    startingPromt();
+                })
+        })
 }
 
 function add_Employee() {
     console.log("Adding a Empployee");
-    startingPromt();
+    // startingPromt();
 }
 
 function update_Employee_Role() {
-    startingPromt();
+    // startingPromt();
 }
