@@ -30,7 +30,7 @@ module.exports = {
     },
 
     addDepartment(data){
-        return connection.query("INSERT INTO departments SET ?", data);
+        return connection.query("INSERT INTO departments SET department_name = ?", data);
     },
 
     addRole() {

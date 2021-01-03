@@ -120,7 +120,7 @@ function add_Department() {
             }
         ])
         .then((response) => {
-            db.addDepartment(response);
+            db.addDepartment(response.departmentName);
             startingPromt();
         })
 }
