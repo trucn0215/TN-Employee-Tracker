@@ -137,11 +137,13 @@ function add_Role() {
                 name: getData.department_name
             }))
 
+            console.log("departmentList: " + departmentList[1]);
+
             inquirer
                 .prompt([
                     {
                         type: "list",
-                        name: "departmentChoises",
+                        name: "departmentChoices_id",
                         message: "Choose a DEPARTMENT to Add role!",
                         choices: departmentList
                     },
@@ -157,9 +159,16 @@ function add_Role() {
                     }
                 ])
                 .then((response) => {
-                    console.log("Department Choise: " + response.departmentChoises.name);
-                    console.log("Role Title: " + response.roleTitle);
-                    console.log("Role Salary: " + response.roleSalary);
+                    // console.log("Department Choise: " + response.departmentChoices[1]);
+                    // console.log("Role Title: " + response.roleTitle);
+                    // console.log("Role Salary: " + response.roleSalary);
+                    const newRole = {
+                        title: response.roleTitle,
+                        salary: response.roleSalary,
+                        department_id: response.departmentChoices_id
+                    }
+
+                    db.addRole (newRole);
 
                     console.log("-----------------------------------------")
                     startingPromt();
