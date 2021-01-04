@@ -43,37 +43,37 @@ function startingPromt() {
         .then((trackerchoises) => {
             switch (trackerchoises.choisesOption) {
                 case "View Department":
-                    console.log("\n\nLet's view department table!");
+                    console.log("\n\n---LET'S VIEW DEPARTMENT TABLE!---\n\n");
                     view_Department_Table();
                     break;
 
                 case "View Roles":
-                    console.log("\n\n Lets View Role Table!");
+                    console.log("\n\n---LET'S VIEW ROLE TABLE!---\n\n");
                     view_Role_Table();
                     break;
 
                 case "View Employee":
-                    console.log("\n\n Lets View Employee Table!");
+                    console.log("\n\n---LET'S VIEW EMPLOYEE TABLE!---\n\n");
                     view_Employee_Table();
                     break;
 
                 case "Add Department":
-                    console.log("\n\n Lets Add a Department to Table!");
+                    console.log("\n\n---ADD YOUR NEW DEPARTMENT!---\n\n");
                     add_Department();
                     break;
 
                 case "Add Roles":
-                    console.log("\n\n Lets Add a Role to Table!");
+                    console.log("\n\n---ADD YOUR NEW ROLE!---\n\n");
                     add_Role();
                     break;
 
                 case "Add Employee":
-                    console.log("\n\n Lets Add a Employee to Table!");
+                    console.log("\n\n---ADD YOUR NEW EMPLOYEE!---\n\n");
                     add_Employee();
                     break;
 
                 case "Update Employee Role":
-                    console.log("\n\nLets Update Employee Roles");
+                    console.log("\n\n---UPDATE YOUR EMPLOYEE ROLE!---\n\n");
                     update_Employee_Role();
                     break;
 
