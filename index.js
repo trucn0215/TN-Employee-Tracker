@@ -182,53 +182,79 @@ function add_Role() {
         })
 }
 
+// TODO: Stil trying to figure out how to add employee without Manager and Department_ID
 function add_Employee() {
     // console.log("Adding a Empployee");
+
+    // Select Department THEN list the roles in that departments
     db
-        .getRole()
-        .then((roleData) => {
-            const roleList = roleData.map((getData) => ({
+        .getDepartments()
+        .then((departmentData) => {
+            const departmentList = departmentData.map((getdata) => ({
                 value: getData.id,
-                name: getData.title
+                name: getData.department_name
             }))
 
             inquirer
-                .prompt([
+                .prompt(
                     {
                         type: "list",
-                        name: "roleChoices_id",
-                        message: "Choose a ROLE of employee!",
-                        choices: roleList
-                    },
-                    {
-                        type: "input",
-                        name: "employeeFirstName",
-                        message: "What is employee First Name?"
-                    },
-                    {
-                        type: "input",
-                        name: "employeeLastName",
-                        message: "What is employee Last Name?"
-                    }
-                ])
+                        name: "departmentChoices_id",
+                        message: "Choose a DEPARTMENT to Add role!",
+                        choices: departmentList
+                    })
                 .then((response) => {
-                    // console.log("Department Choise: " + response.departmentChoices_id);
-                    // console.log("Role Title: " + response.roleTitle);
-                    // console.log("Role Salary: " + response.roleSalary);
-                    const newEmployee = {
-                        first_name: response.employeeFirstName,
-                        last_name: response.employeeLastName,
-                        role_id: response.roleChoices_id
-                    }
 
-                    db.addEmployee(newEmployee);
+                    // const 
 
-                    console.log("-----------------------------------------");
-                    startingPromt();
+                    db
+                        .getRole()
+                        .then((roleData) => {
+                            const roleList = roleData.map((getData) => ({
+                                value: getData.id,
+                                name: getData.title
+                            }))
+
+                            inquirer
+                                .prompt([
+                                    {
+                                        type: "list",
+                                        name: "roleChoices_id",
+                                        message: "Choose a ROLE of employee!",
+                                        choices: roleList
+                                    },
+                                    {
+                                        type: "input",
+                                        name: "employeeFirstName",
+                                        message: "What is employee First Name?"
+                                    },
+                                    {
+                                        type: "input",
+                                        name: "employeeLastName",
+                                        message: "What is employee Last Name?"
+                                    }
+                                ])
+                                .then((response) => {
+                                    // console.log("Department Choise: " + response.departmentChoices_id);
+                                    // console.log("Role Title: " + response.roleTitle);
+                                    // console.log("Role Salary: " + response.roleSalary);
+                                    const newEmployee = {
+                                        first_name: response.employeeFirstName,
+                                        last_name: response.employeeLastName,
+                                        role_id: response.roleChoices_id
+                                    }
+
+                                    db.addEmployee(newEmployee);
+
+                                    console.log("-----------------------------------------");
+                                    startingPromt();
+                                })
+                        })
                 })
+
         })
-    }
+}
 
 function update_Employee_Role() {
-                // startingPromt();
-            }
+    // startingPromt();
+}

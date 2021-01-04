@@ -25,12 +25,24 @@ module.exports = {
         return connection.query("INSERT INTO departments SET department_name = ?", data);
     },
 
+    removeDepartment(){
+        return connection.query("REMOVE");
+    },
+
     getRole() {
         return connection.query("SELECT * FROM roles");
     },
 
     addRole(data) {
         return connection.query("INSERT INTO roles SET ?", data);
+    },
+
+    removeRole(){
+
+    },
+
+    updateRole() {
+
     },
 
     getEmployee(){
@@ -41,10 +53,13 @@ module.exports = {
         return connection.query("INSERT INTO employees SET ?", data);
     },
 
-    updateEmployeeRole() {
+    removeEmployee(){
 
     },
 
+    updateEmployee() {
+
+    },
     endConnection (){
         return connection.end();
     }
