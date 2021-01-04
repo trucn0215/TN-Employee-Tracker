@@ -89,6 +89,8 @@ function view_Department_Table() {
         .getDepartments()
         .then((result) => {
             console.table(result);
+
+            console.log("-----------------------------------------");
             startingPromt();
         })
 }
@@ -98,6 +100,8 @@ function view_Role_Table() {
         .getRole()
         .then((result) => {
             console.table(result);
+
+            console.log("-----------------------------------------");
             startingPromt();
         })
 }
@@ -107,6 +111,8 @@ function view_Employee_Table() {
         .getEmployee()
         .then((result) => {
             console.table(result);
+
+            console.log("-----------------------------------------");
             startingPromt();
         })
 }
@@ -123,6 +129,8 @@ function add_Department() {
         )
         .then((response) => {
             db.addDepartment(response.departmentName);
+
+            console.log("-----------------------------------------");
             startingPromt();
         })
 }
@@ -136,8 +144,6 @@ function add_Role() {
                 value: getData.id,
                 name: getData.department_name
             }))
-
-            console.log("departmentList: " + departmentList[1]);
 
             inquirer
                 .prompt([
@@ -159,7 +165,7 @@ function add_Role() {
                     }
                 ])
                 .then((response) => {
-                    // console.log("Department Choise: " + response.departmentChoices[1]);
+                    // console.log("Department Choise: " + response.departmentChoices_id);
                     // console.log("Role Title: " + response.roleTitle);
                     // console.log("Role Salary: " + response.roleSalary);
                     const newRole = {
@@ -168,19 +174,61 @@ function add_Role() {
                         department_id: response.departmentChoices_id
                     }
 
-                    db.addRole (newRole);
+                    db.addRole(newRole);
 
-                    console.log("-----------------------------------------")
+                    console.log("-----------------------------------------");
                     startingPromt();
                 })
         })
 }
 
 function add_Employee() {
-    console.log("Adding a Empployee");
-    // startingPromt();
-}
+    // console.log("Adding a Empployee");
+    db
+        .getRole()
+        .then((roleData) => {
+            const roleList = roleData.map((getData) => ({
+                value: getData.id,
+                name: getData.title
+            }))
+
+            inquirer
+                .prompt([
+                    {
+                        type: "list",
+                        name: "roleChoices_id",
+                        message: "Choose a ROLE of employee!",
+                        choices: roleList
+                    },
+                    {
+                        type: "input",
+                        name: "employeeFirstName",
+                        message: "What is employee First Name?"
+                    },
+                    {
+                        type: "input",
+                        name: "employeeLastName",
+                        message: "What is employee Last Name?"
+                    }
+                ])
+                .then((response) => {
+                    // console.log("Department Choise: " + response.departmentChoices_id);
+                    // console.log("Role Title: " + response.roleTitle);
+                    // console.log("Role Salary: " + response.roleSalary);
+                    const newEmployee = {
+                        first_name: response.employeeFirstName,
+                        last_name: response.employeeLastName,
+                        role_id: response.roleChoices_id
+                    }
+
+                    db.addEmployee(newEmployee);
+
+                    console.log("-----------------------------------------");
+                    startingPromt();
+                })
+        })
+    }
 
 function update_Employee_Role() {
-    // startingPromt();
-}
+                // startingPromt();
+            }
