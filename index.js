@@ -19,7 +19,7 @@ function combineTable() {
 
 combineTable(); // Call Back the function
 
-// Starting with the choises TO DO
+// Starting with the choises
 function startingPromt() {
     inquirer
         .prompt(
@@ -84,6 +84,7 @@ function startingPromt() {
         })
 }
 
+// VIEW DEPARTMENT TABLE FUNCTION
 function view_Department_Table() {
     db
         .getDepartments()
@@ -95,6 +96,7 @@ function view_Department_Table() {
         })
 }
 
+// VIEW ROLE TABLE FUNCTION
 function view_Role_Table() {
     db
         .getRole()
@@ -106,6 +108,7 @@ function view_Role_Table() {
         })
 }
 
+// VIEW EMPLOYEE TABLE FUNCTION
 function view_Employee_Table() {
     db
         .getEmployee()
@@ -117,6 +120,7 @@ function view_Employee_Table() {
         })
 }
 
+// ADDING DEPARTMENT FUNCTION
 function add_Department() {
     // console.log("Adding a Department");
     inquirer
@@ -135,6 +139,7 @@ function add_Department() {
         })
 }
 
+// ADDING ROLE FUNCTION
 function add_Role() {
     // console.log("Adding a Role");
     db
@@ -182,7 +187,7 @@ function add_Role() {
         })
 }
 
-// TODO: Stil trying to figure out how to add employee without Manager and Department_ID
+// ADDING EMPLOYEE FUNCTION
 function add_Employee() {
     // console.log("Adding a Empployee");
 
@@ -190,7 +195,7 @@ function add_Employee() {
     db
         .getDepartments()
         .then((departmentData) => {
-            const departmentList = departmentData.map((getdata) => ({
+            const departmentList = departmentData.map((getData) => ({
                 value: getData.id,
                 name: getData.department_name
             }))
@@ -200,15 +205,16 @@ function add_Employee() {
                     {
                         type: "list",
                         name: "departmentChoices_id",
-                        message: "Choose a DEPARTMENT to Add role!",
+                        message: "Choose a DEPARTMENT to Add Employee!",
                         choices: departmentList
                     })
                 .then((response) => {
 
-                    // const 
+                    const departmentDataPick = response.departmentChoices_id;
+
 
                     db
-                        .getRole()
+                        .getRole(departmentDataPick)
                         .then((roleData) => {
                             const roleList = roleData.map((getData) => ({
                                 value: getData.id,
@@ -241,7 +247,8 @@ function add_Employee() {
                                     const newEmployee = {
                                         first_name: response.employeeFirstName,
                                         last_name: response.employeeLastName,
-                                        role_id: response.roleChoices_id
+                                        role_id: response.roleChoices_id,
+                                        department_id: departmentDataPick
                                     }
 
                                     db.addEmployee(newEmployee);

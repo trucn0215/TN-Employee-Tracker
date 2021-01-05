@@ -29,8 +29,8 @@ module.exports = {
         return connection.query("REMOVE");
     },
 
-    getRole() {
-        return connection.query("SELECT * FROM roles");
+    getRole(data) {
+        return connection.query("SELECT * FROM roles WHERE department_id = ?", data);
     },
 
     addRole(data) {
