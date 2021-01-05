@@ -29,50 +29,50 @@ function startingPromt() {
                 name: "choisesOption",
                 choices:
                     [
-                        "View Department",
-                        "View Roles",
-                        "View Employee",
-                        "Add Department",
-                        "Add Roles",
-                        "Add Employee",
-                        "Update Employee Role",
-                        "QUIT"
+                        "1. View Department",
+                        "2. View Roles",
+                        "3. View Employee",
+                        "4. Add Department",
+                        "5. Add Roles",
+                        "6. Add Employee",
+                        "7. Update Employee Role",
+                        "8. QUIT"
                     ]
             }
         )
         .then((trackerchoises) => {
             switch (trackerchoises.choisesOption) {
-                case "View Department":
+                case "1. View Department":
                     console.log("\n\n---LET'S VIEW DEPARTMENT TABLE!---\n\n");
                     view_Department_Table();
                     break;
 
-                case "View Roles":
+                case "2. View Roles":
                     console.log("\n\n---LET'S VIEW ROLE TABLE!---\n\n");
                     view_Role_Table();
                     break;
 
-                case "View Employee":
+                case "3. View Employee":
                     console.log("\n\n---LET'S VIEW EMPLOYEE TABLE!---\n\n");
                     view_Employee_Table();
                     break;
 
-                case "Add Department":
+                case "4. Add Department":
                     console.log("\n\n---ADD YOUR NEW DEPARTMENT!---\n\n");
                     add_Department();
                     break;
 
-                case "Add Roles":
+                case "5. Add Roles":
                     console.log("\n\n---ADD YOUR NEW ROLE!---\n\n");
                     add_Role();
                     break;
 
-                case "Add Employee":
+                case "6. Add Employee":
                     console.log("\n\n---ADD YOUR NEW EMPLOYEE!---\n\n");
                     add_Employee();
                     break;
 
-                case "Update Employee Role":
+                case "7. Update Employee Role":
                     console.log("\n\n---UPDATE YOUR EMPLOYEE ROLE!---\n\n");
                     update_Employee_Role();
                     break;
