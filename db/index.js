@@ -38,8 +38,8 @@ module.exports = {
     },
 
     // Remove Department
-    removeDepartment(){
-        return connection.query("REMOVE");
+    removeDepartment(data){
+        return connection.query("DELETE FROM departments WHERE id = ?", data);
     },
 
     // Add Role to Table

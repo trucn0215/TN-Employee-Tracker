@@ -46,52 +46,52 @@ function startingPromt() {
         .then((trackerchoises) => {
             switch (trackerchoises.choisesOption) {
                 case "1. View Department":
-                    console.log("\n\n---LET'S VIEW DEPARTMENT TABLE!---\n\n");
+                    console.log("\n\n---LET'S VIEW DEPARTMENT TABLE!---\n");
                     view_Department_Table();
                     break;
 
                 case "2. View Roles":
-                    console.log("\n\n---LET'S VIEW ROLE TABLE!---\n\n");
+                    console.log("\n\n---LET'S VIEW ROLE TABLE!---\n");
                     view_Role_Table();
                     break;
 
                 case "3. View Employee":
-                    console.log("\n\n---LET'S VIEW EMPLOYEE TABLE!---\n\n");
+                    console.log("\n\n---LET'S VIEW EMPLOYEE TABLE!---\n");
                     view_Employee_Table();
                     break;
 
                 case "4. Add Department":
-                    console.log("\n\n---ADD A DEPARTMENT!---\n\n");
+                    console.log("\n\n---ADD A DEPARTMENT!---\n");
                     add_Department();
                     break;
 
                 case "5. Delete Department":
-                    console.log("\n\n---DELETE DEPARTMENT!---\n\n");
+                    console.log("\n\n---DELETE DEPARTMENT!---\n");
                     remove_department();
                     break;
 
                 case "6. Add Roles":
-                    console.log("\n\n---ADD NEW ROLE!---\n\n");
+                    console.log("\n\n---ADD NEW ROLE!---\n");
                     add_Role();
                     break;
 
                 case "7. Delete Role":
-                    console.log("\n\n---DELETE ROLE!---\n\n");
+                    console.log("\n\n---DELETE ROLE!---\n");
                     remove_Role();
                     break;
 
                 case "8. Add Employee":
-                    console.log("\n\n---ADD NEW EMPLOYEE!---\n\n");
+                    console.log("\n\n---ADD NEW EMPLOYEE!---\n");
                     add_Employee();
                     break;
 
                 case "9. Delete Employee":
-                    console.log("\n\n---DELETE EMPLOYEE!---\n\n");
+                    console.log("\n\n---DELETE EMPLOYEE!---\n");
                     remove_Employee();
                     break;
 
                 case "10. Update Employee":
-                    console.log("\n\n---UPDATE EMPLOYEE!---\n\n");
+                    console.log("\n\n---UPDATE EMPLOYEE!---\n");
                     update_Employee();
                     break;
 
@@ -159,7 +159,29 @@ function add_Department() {
 
 // 5. REMOVE DEPARTMENT
 function remove_department(){
+    db
+        .getDepartments()
+        .then((departmentData) => {
+            const departmentList = departmentData.map((getData) => ({
+                value: getData.id,
+                name: getData.department_name
+            }))
 
+            inquirer
+                .prompt(
+                    {
+                        type: "list",
+                        name: "departmentChoices_id",
+                        message: "Choose a DEPARTMENT to remove!",
+                        choices: departmentList
+                    })
+                .then((response) => {
+                    db.removeDepartment(response.departmentChoices_id);
+
+                    console.log("-----------------------------------------");
+                    startingPromt();
+                })
+        })
 }
 
 // 6. ADDING ROLE FUNCTION
