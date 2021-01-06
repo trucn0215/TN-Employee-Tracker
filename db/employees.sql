@@ -15,7 +15,10 @@ CREATE TABLE roles (
     salary DECIMAL(9,2) ,
     department_id INT,
     PRIMARY KEY (id),
-    FOREIGN KEY (department_id) REFERENCES departments (id)
+    FOREIGN KEY (department_id) 
+        REFERENCES departments (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE employees (
@@ -25,6 +28,12 @@ CREATE TABLE employees (
     role_id INT,
     department_id INT,
     PRIMARY KEY (id),
-    FOREIGN KEY (department_id) REFERENCES departments (id),
-    FOREIGN KEY (role_id) REFERENCES roles (id)
+    FOREIGN KEY (department_id) 
+        REFERENCES departments (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (role_id) 
+        REFERENCES roles (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );

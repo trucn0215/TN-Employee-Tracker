@@ -117,7 +117,7 @@ function view_Department_Table() {
 // 2. VIEW ROLE TABLE FUNCTION
 function view_Role_Table() {
     db
-        .getRole()
+        .viewRole()
         .then((result) => {
             console.table(result);
 
@@ -158,7 +158,7 @@ function add_Department() {
 }
 
 // 5. REMOVE DEPARTMENT
-function remove_department(){
+function remove_department() {
     db
         .getDepartments()
         .then((departmentData) => {
@@ -233,8 +233,53 @@ function add_Role() {
 }
 
 // 7. REMOVE ROLE
-function remove_Role(){
+function remove_Role() {
+    db
+        .getDepartments()
+        .then((departmentData) => {
+            const departmentList = departmentData.map((getData) => ({
+                value: getData.id,
+                name: getData.department_name
+            }))
 
+            inquirer
+                .prompt(
+                    {
+                        type: "list",
+                        name: "departmentChoices_id",
+                        message: "Choose a DEPARTMENT!",
+                        choices: departmentList
+                    }
+                )
+                .then((response) => {
+                    const departmentDataPick = response.departmentChoices_id;
+
+                    db
+                        .getRole(departmentDataPick)
+                        .then((roleData) => {
+                            const roleList = roleData.map((getData) => ({
+                                value: getData.id,
+                                name: getData.title
+                            }))
+
+                            inquirer
+                                .prompt(
+                                    {
+                                        type: "list",
+                                        name: "roleChoices_id",
+                                        message: "Choose a ROLE to remove!",
+                                        choices: roleList
+                                    }
+                                )
+                                .then((response) => {
+                                    db.removeRole(response.roleChoices_id);
+
+                                    console.log("-----------------------------------------");
+                                    startingPromt();
+                                })
+                        })
+                })
+        })
 }
 
 // 8. ADDING EMPLOYEE FUNCTION
@@ -309,7 +354,7 @@ function add_Employee() {
 }
 
 // 9. REMOVE EMPLOYEE
-function remove_Employee(){
+function remove_Employee() {
 
 }
 

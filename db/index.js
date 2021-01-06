@@ -23,6 +23,13 @@ module.exports = {
     },
 
     // View Roles Table
+    viewRole(){
+        return connection.query("SELECT r.id, r.title, r.salary, d.department_name as Department FROM roles r "+  
+        "INNER JOIN departments d "+
+        "ON r.department_id = d.id;");
+    },
+
+    // Get Role Table
     getRole(data) {
         return connection.query("SELECT * FROM roles WHERE department_id = ?", data);
     },
@@ -48,8 +55,8 @@ module.exports = {
     },
 
     // Remove Role from Table
-    removeRole(){
-
+    removeRole(data){
+        return connection.query("DELETE FROM roles WHERE id = ?", data);
     },
 
     // Add Employee to Table
