@@ -31,12 +31,15 @@ function startingPromt() {
                     [
                         "1. View Department",
                         "2. View Roles",
-                        "3. View Employee",
+                        "3. View Employees",
                         "4. Add Department",
-                        "5. Add Roles",
-                        "6. Add Employee",
-                        "7. Update Employee Role",
-                        "8. QUIT"
+                        "5. Delete Department",
+                        "6. Add Role",
+                        "7. Delete Role",
+                        "8. Add Employee",
+                        "9. Delete Employee",
+                        "10. Update Employee Role",
+                        "11. QUIT"
                     ]
             }
         )

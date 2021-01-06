@@ -17,9 +17,9 @@ So that I can organize and plan my business
 ```
 
 ## Employee Tracker Use Options
-* Add departments, roles, employees
-
 * View departments, roles, employees
+
+* Add departments, roles, employees
 
 * Update employee roles
 
