@@ -38,7 +38,7 @@ function startingPromt() {
                         "7. Delete Role",
                         "8. Add Employee",
                         "9. Delete Employee",
-                        "10. Update Employee Role",
+                        "10. Update Employee",
                         "11. QUIT"
                     ]
             }

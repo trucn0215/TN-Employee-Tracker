@@ -17,49 +17,57 @@ module.exports = {
             ORDER BY e.id;`)
     },
 
+    // View Department Table
     getDepartments() {
         return connection.query("SELECT * FROM departments")
     },
 
-    addDepartment(data){
-        return connection.query("INSERT INTO departments SET department_name = ?", data);
-    },
-
-    removeDepartment(){
-        return connection.query("REMOVE");
-    },
-
+    // View Roles Table
     getRole(data) {
         return connection.query("SELECT * FROM roles WHERE department_id = ?", data);
     },
 
-    addRole(data) {
-        return connection.query("INSERT INTO roles SET ?", data);
-    },
-
-    removeRole(){
-
-    },
-
-    updateRole() {
-
-    },
-
+    // View Employee Table
     getEmployee(){
         return connection.query("SELECT * FROM employees");
     },
 
+    // Add Department to Table
+    addDepartment(data){
+        return connection.query("INSERT INTO departments SET department_name = ?", data);
+    },
+
+    // Remove Department
+    removeDepartment(){
+        return connection.query("REMOVE");
+    },
+
+    // Add Role to Table
+    addRole(data) {
+        return connection.query("INSERT INTO roles SET ?", data);
+    },
+
+    // Remove Role from Table
+    removeRole(){
+
+    },
+
+    // Add Employee to Table
     addEmployee(data){
         return connection.query("INSERT INTO employees SET ?", data);
     },
 
+    // Remove Employee from Table
     removeEmployee(){
 
     },
 
+    // Update Employee
     updateEmployee() {
 
     },
+
+    // Quit the App
     endConnection (){
         return connection.end();
     }

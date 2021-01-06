@@ -21,19 +21,19 @@ So that I can organize and plan my business
 
 * Add departments, roles, employees
 
+* Delete departments, roles, and employees
+
 * Update employee roles
 
 * Update employee managers
 
 * View employees by manager
 
-* Delete departments, roles, and employees
-
 * View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 
 ## Link
 * [Demo Video]()
-* [Repo Link]()
+* [Repo Link](https://github.com/trucn0215/TN-Employee-Tracker)
 
 ## Screenshot
 
