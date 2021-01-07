@@ -65,13 +65,13 @@ module.exports = {
     },
 
     // Remove Employee from Table
-    removeEmployee(){
-
+    removeEmployee(data){
+        return connection.query("DELETE FROM employees WHERE id = ? ", data)
     },
 
     // Update Employee
-    updateEmployee() {
-
+    updateEmployee(data) {
+        return connection.query("UPDATE employees SET ? WHERE ?", data)
     },
 
     // Quit the App

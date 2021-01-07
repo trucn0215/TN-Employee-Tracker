@@ -55,7 +55,7 @@ function startingPromt() {
                     view_Role_Table();
                     break;
 
-                case "3. View Employee":
+                case "3. View Employees":
                     console.log("\n\n---LET'S VIEW EMPLOYEE TABLE!---\n");
                     view_Employee_Table();
                     break;
@@ -70,7 +70,7 @@ function startingPromt() {
                     remove_department();
                     break;
 
-                case "6. Add Roles":
+                case "6. Add Role":
                     console.log("\n\n---ADD NEW ROLE!---\n");
                     add_Role();
                     break;
@@ -355,7 +355,30 @@ function add_Employee() {
 
 // 9. REMOVE EMPLOYEE
 function remove_Employee() {
+    db
+        .getEmployee()
+        .then((employeeData) => {
+            const employeeList = employeeData.map((getData) => ({
+                value: getData.id,
+                name: getData.first_name + " " + getData.last_name
+            }))
 
+            inquirer
+                .prompt(
+                    {
+                        type: "list",
+                        name: "employeeID",
+                        message: "Pick an Employee to remove!",
+                        choices: employeeList
+                    }
+                )
+                .then((response) => {
+                    db.removeEmployee(response.employeeID);
+
+                    console.log("-----------------------------------------");
+                    startingPromt();
+                })
+        })
 }
 
 // 10. Update Employee
