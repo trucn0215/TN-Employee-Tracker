@@ -71,7 +71,7 @@ module.exports = {
 
     // Update Employee
     updateEmployee(data) {
-        return connection.query("UPDATE employees SET ? WHERE ?", data)
+        return connection.query("UPDATE employees SET role_id = ? WHERE id = ?", data)
     },
 
     // Quit the App

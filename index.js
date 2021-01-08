@@ -383,5 +383,52 @@ function remove_Employee() {
 
 // 10. Update Employee
 function update_Employee() {
-    // startingPromt();
+    db
+        .getEmployee()
+        .then((employeeData) => {
+            const employeeList = employeeData.map((getData) => ({
+                value: getData.id,
+                name: getData.first_name + " " + getData.last_name                
+            }))
+
+            inquirer
+                .prompt({
+                    type: "list",
+                    name: "employeeId",
+                    message: "Select an Employee to UPDATE!",
+                    choices: employeeList
+                })
+                .then((selectedEmployeeId) => {
+                    // console.log("Select Employee ID " + selectedEmployeeId.employeeId);
+
+                    db
+                        .viewRole()
+                        .then((roleData) => {
+                            const roleList = roleData.map((getData) => ({
+                                value: getData.id,
+                                name: getData.title
+                            }))
+                            inquirer
+                                .prompt({
+                                    type: "list",
+                                    name: "roleId",
+                                    message: "Pick a new role for Employee!",
+                                    choices: roleList
+                                })
+                                .then((newRole) => {
+                                    const employeeUpdateInfo = [
+                                        {role_id: newRole.roleId},
+                                        {id: selectedEmployeeId.employeeId}
+                                    ]
+
+                                    // console.log("Update info" + employeeUpdateInfo);
+
+                                    db.updateEmployee(employeeUpdateInfo);
+
+                                    console.log("-----------------------------------------");
+                                    startingPromt();                                    
+                                })
+                        })
+                })
+        })
 }
