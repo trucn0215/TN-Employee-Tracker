@@ -36,7 +36,8 @@ module.exports = {
 
     // View Employee Table
     getEmployee(){
-        return connection.query("SELECT * FROM employees");
+        return connection.query("SELECT e.id, e.first_name, e.last_name, r.tilte FROM employees e" + 
+        "INNER JOIN roles r ON e.role_id = r.id");
     },
 
     // Add Department to Table
@@ -71,7 +72,7 @@ module.exports = {
 
     // Update Employee
     updateEmployee(data) {
-        return connection.query("UPDATE employees SET role_id = ? WHERE id = ?", data)
+        return connection.query("UPDATE employees SET ? WHERE ?", data)
     },
 
     // Quit the App
