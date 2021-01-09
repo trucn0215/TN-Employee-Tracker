@@ -8,6 +8,9 @@
 - [Screenshot](#Screenshot)
 
 ## Description
+```
+The Employee Tracker application can be use to track all employee in your company. Application can view, add, Remove or update employee, roles and departments. 
+```
 
 ## User Story
 ```
@@ -24,12 +27,6 @@ So that I can organize and plan my business
 * Delete departments, roles, and employees
 
 * Update employee roles
-
-* Update employee managers
-
-* View employees by manager
-
-* View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 
 ## Link
 * [Demo Video](https://youtu.be/H8ejAXODX0Q)
