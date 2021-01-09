@@ -32,10 +32,9 @@ So that I can organize and plan my business
 * View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 
 ## Link
-* [Demo Video]()
+* [Demo Video](https://youtu.be/H8ejAXODX0Q)
 * [Repo Link](https://github.com/trucn0215/TN-Employee-Tracker)
 
 ## Screenshot
-
 ### Screenshot the List of Tracker App Options
-![]()
+![list of choices](img/List-of-choices-Screen-Shot.png)
